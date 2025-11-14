@@ -12,7 +12,17 @@ public class Conflicts {
 	private String arrivalInTime;
 	private String departureInTime;
 	
+//	platformManager assingingPlatform;
+//
+//	public Conflicts(platformManager pm) {
+//	    this.assingingPlatform = pm;
+//	}
+	
 	platformManager assingingPlatform=new platformManager();
+	
+	public Conflicts() {
+        this.assingingPlatform = new platformManager();
+    }
 	
     public boolean conflictscheck(int selectedTrain,String currentStation,int arrival,int departure,int Currentplatform) {
     	   	
@@ -53,7 +63,7 @@ public class Conflicts {
     	return false;
     }
     
-    public void conflictsManagement(int selectedTrain,String currentStation,int arrival,int departure,int Currentplatform,String direction){
+    public void conflictsManagement(String currentStation,int arrival,int departure,int Currentplatform,String direction){
     
     	try {
     	Connection con=DBManager.getDBconnection();

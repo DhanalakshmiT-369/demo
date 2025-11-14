@@ -80,7 +80,7 @@ public class TrainRouteManager
                 ps.setString(2, startName);
                 ps.setString(3, endName);
                 ps.setString(4, routeString);
-               // ps.executeUpdate();
+                ps.executeUpdate();
             }
 
             System.out.println("Train: " + trainId + " | Route: " + routeString);

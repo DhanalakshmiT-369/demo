@@ -8,6 +8,8 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import induction.DBConnector;
 import optimization.TrainRouteManager;
 
 public class InsertValues extends JFrame implements ActionListener{
@@ -33,15 +35,15 @@ public class InsertValues extends JFrame implements ActionListener{
 		noOfTrains=num;
 		
 	try {
-		Connection con=DBManager.getDBconnection();		
+		Connection con= DBConnector.getDBConnection();		
 		Statement stmt=con.createStatement();
 		
-		ResultSet rs=stmt.executeQuery("select *from sampletable");
+		ResultSet rs=stmt.executeQuery("select *from train_info");
 		
 		int count=0;
 		
 		while(rs.next() && count<num) {
-			int trainNo = rs.getInt("train_no"); 
+			int trainNo = rs.getInt("TRAIN_ID"); 
             trains.add(trainNo); 
             count++;
 		}
@@ -130,25 +132,21 @@ public class InsertValues extends JFrame implements ActionListener{
 		if(e.getSource()==bcontinue) {
 			
 			
-			
-			ArrayList<String> stationsSelected= new ArrayList<>();
-//			ArrayList<Integer> waitingTime= new ArrayList<>();
 			String startStation=tstartingStation.getText();
 			String endStation=tendingStation.getText();
 			int trainSelected=Integer.parseInt(tselectedTrain.getText());
-			
+			      
 			TrainRouteManager routeManager=new TrainRouteManager();
 			routeManager.startingMethod(trainSelected,startStation,endStation);		
-			
+					
 			WaitingTime wt=new WaitingTime(timeDiff,startStation,endStation,trainSelected,startTime,noOfTrains);
-//			
-//			int st=Integer.parseInt(tselectedTrain.getText());
-//			TimeTabl tt=new TimeTabl(timeDiff,stationsSelected,waitingTime,st,startTime,startStation,endStation,noOfTrains);
+
 			wt.setVisible(true);
 			this.dispose();
+			
+			
 		}
 	}
-	
-	
+		
 }
 

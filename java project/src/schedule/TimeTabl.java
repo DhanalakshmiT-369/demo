@@ -1,5 +1,4 @@
 package schedule;
-// have to add train id in ptimized_roots in sql
 
 import java.sql.SQLException;
 import java.sql.*;
@@ -24,7 +23,7 @@ public class TimeTabl extends JFrame implements ActionListener{
 	HashMap<String,Integer> stationConnections=new HashMap<>(); 
 	HashMap<String,String> stationDirections = new HashMap<>();
 	
-	public TimeTabl(int TimeDiff,ArrayList<String> stationsSelected,ArrayList<Integer> waitingTime,int selectedTrain,int startTime,String startStation,String endStation,int noOfTrains) {
+	public TimeTabl(int TimeDiff,ArrayList<Integer> waitingTime,int selectedTrain,int startTime,String startStation,String endStation,int noOfTrains) {
 		starttime=startTime+TimeDiff;
 		timediff=TimeDiff;
 		number=noOfTrains;
@@ -35,7 +34,6 @@ public class TimeTabl extends JFrame implements ActionListener{
 		Statement stmt2=con.createStatement();
 		
 		ResultSet rs=stmt.executeQuery("select *from stations_connections");
-		ResultSet rs1=stmt1.executeQuery("select *from  optimized_roots");
 		ResultSet rs2=stmt2.executeQuery("select *from  station_directions");
 
 		while (rs.next()) {
@@ -43,7 +41,10 @@ public class TimeTabl extends JFrame implements ActionListener{
 		    int distance = rs.getInt("distance");
 		    stationConnections.put(key, distance);
 		}
-
+		
+		ResultSet rs1=stmt1.executeQuery("select *from  optimized_roots");
+		optimizedStations.clear();
+		
 		while (rs1.next()) {
 			int train_id=rs1.getInt("train_id");
 			if(train_id==selectedTrain) {
@@ -76,18 +77,24 @@ public class TimeTabl extends JFrame implements ActionListener{
 		DefaultTableModel model=new DefaultTableModel(
 				new Object[][] {},
 		        new String[] {"Stations", "Arrival Time", "Departure Time", "Platform"}
-				);
+				); 
 		schedule=new JTable(model);
 		JScrollPane ttscrollpane = new JScrollPane(schedule);
 		ttscrollpane.setBounds(10, 29, 462, 318);
 		contentPane.add(ttscrollpane);
 		
+//		PreparedStatement deleteOld = con.prepareStatement("DELETE FROM optimized_roots WHERE train_id = ?");
+//        deleteOld.setInt(1, selectedTrain);
+//        deleteOld.executeUpdate();
+        
 		int startingtime=startTime;
 		int arrival=0;
 	    int departure=0;
 		
         stmt.execute("create table if not exists ScheduledTrains(train_id int,arrivaltime int,departuretime int,platform int,stations varchar(30))");      
-		
+        model.setRowCount(0);
+        platformManager platmanager=new platformManager(); 
+        
 		for(int i=0;i<optimizedStations.size();i++) {
 			String currentStation = optimizedStations.get(i);
 			String previousStation="";
@@ -162,16 +169,12 @@ public class TimeTabl extends JFrame implements ActionListener{
 		int arrivalinmin=arrival%60;
 		int departureinhours=departure/60;
 		int departureinmin=departure%60;
-		
-		platformManager platmanager=new platformManager();    
+		   
 		int platform=platmanager.assign_platform(currentStation,direction,arrival,departure);
-	        
+	    
 	    model.addRow(new Object[] {currentStation,arrivalinhours+":"+arrivalinmin, departureinhours+":"+departureinmin,platform});
 	        
 		startingtime=departure;
-		
-       // stmt.execute("create table if not exists ScheduledTrains(train_id int,arrivaltime int,departuretime int,platform int,stations varchar(30))");        
-		//stmt.execute("create table if not exists ScheduledTrains(train_id int,trainName varchar(30)
 		
 		Conflicts checkConflict=new Conflicts();
 		boolean check=checkConflict.conflictscheck(selectedTrain,currentStation,arrival,departure,platform);
@@ -187,7 +190,7 @@ public class TimeTabl extends JFrame implements ActionListener{
 
         if (check) {
         	
-        	checkConflict.conflictsManagement(selectedTrain, currentStation, arrival, departure, platform,direction);
+        	checkConflict.conflictsManagement(currentStation, arrival, departure, platform,direction);
         	 
             dbArrival = checkConflict.getAdjustedArrival();
             dbDeparture = checkConflict.getAdjustedDeparture();
@@ -208,7 +211,7 @@ public class TimeTabl extends JFrame implements ActionListener{
 //			ps.setString(3,String.valueOf(arrivalinhours)+":"+String.valueOf(arrivalinmin));
 //			ps.setString(4,String.valueOf(departureinhours)+":"+String.valueOf(departureinmin));
 			
-			//ps.executeUpdate();
+			ps.executeUpdate();
 		
 		}
 		
@@ -234,7 +237,7 @@ public class TimeTabl extends JFrame implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==bcontinue) {			
-				    System.out.println("DEBUG → Opening InsertValues with: number=, timediff=, starttime=");
+				   // System.out.println("Opening InsertValues with: number=, timediff=, starttime=");
 
 		            InsertValues insertvalue = new InsertValues(number, timediff, starttime);
 		            insertvalue.setVisible(true);
@@ -246,7 +249,6 @@ public class TimeTabl extends JFrame implements ActionListener{
 		        schedule.setVisible(true);
 		        this.dispose();
 		    }
-		}
-	
-
+		}	
 }
+

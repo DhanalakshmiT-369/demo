@@ -23,7 +23,6 @@ public class UpdatePlatform extends JFrame implements ActionListener {
         this.departure=departure;
         this.parentView = parentView;
 
-        // --- Frame setup ---
         setTitle("Update Platform");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 380);
@@ -33,7 +32,6 @@ public class UpdatePlatform extends JFrame implements ActionListener {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        // --- Labels ---
         JLabel Title = new JLabel("Update Train Platform");
         Title.setFont(new Font("Tahoma", Font.BOLD, 16));
         Title.setBounds(120, 10, 250, 30);
@@ -69,12 +67,10 @@ public class UpdatePlatform extends JFrame implements ActionListener {
         newPlatform.setBounds(50, 215, 120, 25);
         contentPane.add(newPlatform);
 
-        // --- Text field ---
         tnewPlatform = new JTextField();
         tnewPlatform.setBounds(180, 215, 150, 25);
         contentPane.add(tnewPlatform);
 
-        // --- Buttons ---
         bUpdate = new JButton("Update");
         bUpdate.setBounds(90, 270, 100, 30);
         contentPane.add(bUpdate);
@@ -83,12 +79,9 @@ public class UpdatePlatform extends JFrame implements ActionListener {
         bCancel.setBounds(230, 270, 100, 30);
         contentPane.add(bCancel);
 
-        // --- Add Action Listeners ---
         bUpdate.addActionListener(this);
         bCancel.addActionListener(this);
 
-//         --- Make visible ---
-//        setVisible(true);
     }
 
     @Override

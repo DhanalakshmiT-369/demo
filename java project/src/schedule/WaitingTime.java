@@ -165,9 +165,6 @@ public class WaitingTime extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==bcontinue) {
 			
-			
-			
-			ArrayList<String> stationsSelected= new ArrayList<>();
 			ArrayList<Integer> waitingTime= new ArrayList<>();
 
 			// Add waiting time only for stations that appear in optimizeStations
@@ -200,7 +197,7 @@ public class WaitingTime extends JFrame implements ActionListener{
 			    }
 			}
 			
-			TimeTabl tt=new TimeTabl(timeDiff,stationsSelected,waitingTime,selectedTrain,startTime,startingStation,endingStation,noOfTrains);
+			TimeTabl tt=new TimeTabl(timeDiff,waitingTime,selectedTrain,startTime,startingStation,endingStation,noOfTrains);
 			tt.setVisible(true);
 			this.dispose();
 
