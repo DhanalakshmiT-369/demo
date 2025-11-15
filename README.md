@@ -96,6 +96,8 @@ Connects to MySQL.
 
 Helper class for priority queue operation in Dijkstra.
 
+---
+
 
 Aafreen :
 
@@ -140,3 +142,72 @@ This module forms the core of the Train Induction System, ensuring every train i
 ## Purpose
 The Induction Module ensures every train entering operation has the correct crew, complete information, and updated data. It bridges operational accuracy with real-time database management — making the induction process efficient and error-free.
 
+---
+
+# Crew Management Module :
+
+ ## Overview
+
+The Crew Management Module handles the complete workforce administration required for smooth operation of the AI-Driven Train Induction and Scheduling System.
+
+This module manages the lifecycle of crew members — adding new staff, updating their information, deleting outdated profiles, and tracking their shift allocations. All operations are securely stored in a MySQL database using a structured OOP + DAO-based backend.
+
+It ensures that every crew member is accurately documented and assigned, contributing directly to safer, more efficient train scheduling.
+
+---
+
+
+# Features
+
+ ## Add Crew Information
+
+Add new crew members with details such as name, role, contact information, past shift, current shift, and future shift.
+
+Stores all records in the MySQL database.
+
+Prevents incomplete entries with input validations.
+
+Automatically assigns a unique ID to each crew member.
+
+## Update Crew Information
+
+Modify existing crew details including role changes, contact updates, or shift revisions.
+
+Real-time updates reflected instantly in the UI and the database.
+
+Ensures clean and accurate data through controlled editing operations.
+
+## Delete Crew Information
+
+Remove inactive or outdated crew profiles securely.
+
+Ensures consistent database records through proper deletion handling.
+
+Prevents accidental deletions using selection-based validation.
+
+## Manage Crew Shifts (Past, Current, Future)
+
+Track shift history and upcoming assignments for each crew member.
+
+Provides a clear view of staff availability for scheduling.
+
+Helps prevent crew conflicts, overloading, or overlapping shifts.
+
+Enhances operational planning and scheduling accuracy.
+
+## Full Database Integration
+
+Uses MySQL as the backend for persistent and reliable data storage.
+
+DAO (Data Access Object) architecture ensures clean separation between UI and logic.
+
+Supports robust CRUD operations for all crew-related data.
+
+Ensures scalable and maintainable backend implementation.
+
+##Purpose
+
+The Crew Management Module ensures that all train crew members are properly managed, updated, and assigned.
+It maintains critical workforce data that directly affects train induction, scheduling accuracy, and operational safety.
+
+By combining an intuitive Swing-based interface with strong MySQL backend integration, this module delivers a reliable, efficient, and error-free crew administration system — significantly contributing to the overall functioning of the Train Induction and Scheduling project.
