@@ -1,4 +1,4 @@
-Shedule Part (Dhanalakshmi) - A Java Swing-based application that automates train scheduling, platform assignment, conflict detection, and timetable management using MySQL.
+Shedule Part (Dhanalakshmi. T) - A Java Swing-based application that automates train scheduling, platform assignment, conflict detection, and timetable management using MySQL.
 
 # Train Scheduling & Platform Management Module
 
@@ -143,6 +143,8 @@ This module forms the core of the Train Induction System, ensuring every train i
 The Induction Module ensures every train entering operation has the correct crew, complete information, and updated data. It bridges operational accuracy with real-time database management — making the induction process efficient and error-free.
 
 ---
+
+Mrunal:
 
 # Crew Management Module :
 
