@@ -1,34 +1,75 @@
 Shedule Part (Dhanalakshmi) - A Java Swing-based application that automates train scheduling, platform assignment, conflict detection, and timetable management using MySQL.
 
-project overview
+# Train Scheduling & Platform Management Module
 
-This system allows railway administrators to:
+## Overview
 
-1.Schedule trains during Peak / Normal hours
- 2.Select trains and define their start & end stations
- 3.Apply station-wise waiting times
- 4.Automatically calculate travel times using distance maps
- 5.Assign platforms based on station direction
- 6.Detect and resolve platform/time conflicts
- 7.Generate and display a complete timetable
- 8.Update platforms manually through an interface
+The Train Scheduling & Platform Management Module automates the entire workflow of creating and maintaining train timetables. It calculates arrival/departure times, assigns platforms, detects conflicts, and manages real-time updates — all backed by a MySQL database for persistent, reliable storage.
 
-System flow -  ScheduleTrains → InsertValues → WaitingTime → TimeTabl → ViewTimeTable → UpdatePlatform
+This module ensures every train follows an optimized, conflict-free schedule and has the correct platform assigned throughout its journey.
 
-Modules
+---
 
-*ScheduleTrains – User input (mode, count, start time)
-*InsertValues – Train selection & route setup
-*WaitingTime – Station-wise waiting entry
-*TimeTabl – Core engine (time calc, platforms, conflicts)
-*platformManager – Platform allocation
-*Conflicts – Detect & fix overlapping timings
-*ViewTimeTable – Display scheduled trains
-*UpdatePlatform – Manually change platform
+## Features
+Automated Train Scheduling
 
-🔹 Summary
-The system automates timetable creation, ensures no platform conflicts, and provides an interface for manual updates.
+Generates train schedules for Peak and Normal modes.
 
+Accepts inputs like number of trains, first train time, and selected route.
+
+Automatically computes arrival and departure times using station distances and waiting durations.
+
+## Route & Waiting Time Management
+
+Retrieves optimized routes directly from the database.
+
+Allows entering waiting times for only the stations included in the optimized path.
+
+Ensures accurate timing across all stations with consistent calculations.
+
+## Platform Assignment (Direction-Based)
+
+Assigns platforms based on Northbound or Southbound direction.
+
+Tracks platform occupancy to avoid overlapping timings.
+
+Allocates the nearest available platform automatically.
+
+## Conflict Detection & Resolution
+
+Detects platform/time conflicts using arrival and departure overlap rules.
+
+Attempts resolving conflicts by trying alternate platforms.
+
+If no platform is free, shifts train timings intelligently to avoid clashes.
+
+## Real-Time Timetable Generation
+
+Generates a complete schedule with station names, arrival times, departure times, and platform numbers.
+
+Stores the final schedule in the scheduledtrains table.
+
+Displays the timetable through a user-friendly Swing-based UI.
+
+## Manual Platform Updates
+
+Provides a dedicated window to manually update platform numbers.
+
+Updates records safely using parameterized SQL queries.
+
+Automatically refreshes the timetable after updates.
+
+## Full Database Integration
+
+Uses MySQL for persistent storage of routes, directions, platforms, and schedules.
+
+Follows the DAO structure for clean, maintainable backend logic.
+
+Ensures consistent and secure CRUD operations throughout the module.
+
+## Purpose
+
+The Scheduling & Platform Management Module ensures every train runs on an accurate, conflict-free timetable with proper platform assignments. It automates scheduling complexity, reduces manual errors, and provides operational clarity through database-backed planning and real-time updates.
 
 Harsh Trivedi- my part implements a train route optimization system that dynamically loads station connections from a MySQL database, constructs a bidirectional graph, computes the shortest route using Dijkstra’s Algorithm, and stores optimized routes back into the database.
 
@@ -97,14 +138,3 @@ This module forms the core of the Train Induction System, ensuring every train i
 ## Purpose
 The Induction Module ensures every train entering operation has the correct crew, complete information, and updated data. It bridges operational accuracy with real-time database management — making the induction process efficient and error-free.
 
-Future Improvements
-
-Add route visualization
-
-Add full schedule delete/reset
-
-Auto-reschedule all trains
-
-User authentication
-
-Export timetable to CSV/PDF
