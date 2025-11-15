@@ -71,26 +71,28 @@ Ensures consistent and secure CRUD operations throughout the module.
 
 The Scheduling & Platform Management Module ensures every train runs on an accurate, conflict-free timetable with proper platform assignments. It automates scheduling complexity, reduces manual errors, and provides operational clarity through database-backed planning and real-time updates.
 
+---
+
 Harsh Trivedi- my part implements a train route optimization system that dynamically loads station connections from a MySQL database, constructs a bidirectional graph, computes the shortest route using Dijkstra’s Algorithm, and stores optimized routes back into the database.
 
-#TrainRouteManager
+# TrainRouteManager
 
 Connects to MySQL.
   Loads station connections into memory.
   Builds the station graph (nodes + neighbors).
   Runs Dijkstra and stores optimized routes (train_name, start, end, path).
   
-#Station
+# Station
 
   Represents each station node.
   Holds neighboring stations with distances.
 
-#DijkstraOptimization
+# DijkstraOptimization
 
   Implements the shortest-path algorithm.
   Returns an ordered list of station names forming the optimized route.
 
-#Pair
+# Pair
 
 Helper class for priority queue operation in Dijkstra.
 
