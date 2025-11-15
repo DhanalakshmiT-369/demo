@@ -96,3 +96,15 @@ This module forms the core of the Train Induction System, ensuring every train i
 
 ## Purpose
 The Induction Module ensures every train entering operation has the correct crew, complete information, and updated data. It bridges operational accuracy with real-time database management — making the induction process efficient and error-free.
+
+Future Improvements
+
+Add route visualization
+
+Add full schedule delete/reset
+
+Auto-reschedule all trains
+
+User authentication
+
+Export timetable to CSV/PDF
