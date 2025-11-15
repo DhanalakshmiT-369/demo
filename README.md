@@ -52,3 +52,47 @@ Connects to MySQL.
 #Pair
 
 Helper class for priority queue operation in Dijkstra.
+
+
+Aafreen :
+
+# Induction Module
+
+## Overview
+The Induction Module manages the complete workflow for preparing trains before they enter service. It handles essential operations like assigning crew, adding new train records, updating existing details, and removing outdated entries — all backed by a MySQL database for reliable, persistent storage.
+
+This module forms the core of the Train Induction System, ensuring every train is properly documented, assigned, and ready before scheduling.
+
+---
+
+## Features
+
+###  Add Train Information
+- Enter new train details such as train number, name, branding details, job card status, maintenance balance, fitness certificate and assigned crew.
+- Automatically stores the data in the MySQL database.
+- Prevents duplicate entries using validation checks.
+
+###  Update Train Information
+- Modify existing train records (train number, name, branding details, job card status, maintenance balance, fitness certificate and assigned crew).
+- Real-time updates directly reflected in the database.
+- Ensures data integrity with controlled update operations.
+
+###  Delete Train Information
+- Remove outdated or cancelled train entries safely.
+- Database-backed deletion ensures clean and consistent records.
+- Protects against accidental deletions through validation.
+
+###  Assign Crew to Trains
+- Link crew members to specific trains for induction.
+- Checks for crew availability and prevents conflicting assignments.
+- Stores assignment history for tracking and auditing.
+
+###  Full Database Integration
+- Uses MySQL for persistent storage.
+- DAO (Data Access Object) pattern for clean backend architecture.
+- Ensures reliable CRUD operations for all induction-related data.
+
+---
+
+## Purpose
+The Induction Module ensures every train entering operation has the correct crew, complete information, and updated data. It bridges operational accuracy with real-time database management — making the induction process efficient and error-free.
