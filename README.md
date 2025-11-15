@@ -3,14 +3,15 @@ Shedule Part (Dhanalakshmi) - A Java Swing-based application that automates trai
 project overview
 
 This system allows railway administrators to:
-Schedule trains during Peak / Normal hours
-Select trains and define their start & end stations
-Apply station-wise waiting times
-Automatically calculate travel times using distance maps
-Assign platforms based on station direction
-Detect and resolve platform/time conflicts
-Generate and display a complete timetable
-Update platforms manually through an interface
+
+1.Schedule trains during Peak / Normal hours
+ 2.Select trains and define their start & end stations
+ 3.Apply station-wise waiting times
+ 4.Automatically calculate travel times using distance maps
+ 5.Assign platforms based on station direction
+ 6.Detect and resolve platform/time conflicts
+ 7.Generate and display a complete timetable
+ 8.Update platforms manually through an interface
 
 System flow -  ScheduleTrains → InsertValues → WaitingTime → TimeTabl → ViewTimeTable → UpdatePlatform
 
